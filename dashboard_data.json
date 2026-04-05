@@ -1,0 +1,75 @@
+{
+  "last_updated": "2026-04-05T08:09:46.006317",
+  "investment": {
+    "total": 2807751,
+    "change_percent": 13.284075486935677,
+    "trend": [
+      1200000,
+      1500000,
+      1800000,
+      2100000,
+      2400000,
+      2800000
+    ]
+  },
+  "progress": {
+    "percentage": 64,
+    "phase": "2/4",
+    "change_percent": 8.084731111829939
+  },
+  "investors": {
+    "total": 47,
+    "breakdown": {
+      "institutional": 12,
+      "individual": 28,
+      "strategic": 7
+    }
+  },
+  "financial": {
+    "roi": 18.762234063402364,
+    "profit_margin": 32.02228034945524,
+    "cash_flow": 445214,
+    "monthly_growth": 7.671953603662214
+  },
+  "milestones": [
+    {
+      "name": "Phase 1: 概念验证",
+      "status": "completed",
+      "date": "2026-01"
+    },
+    {
+      "name": "Phase 2: MVP开发",
+      "status": "in_progress",
+      "date": "2026-06"
+    },
+    {
+      "name": "Phase 3: 市场扩展",
+      "status": "pending",
+      "date": "2026-09"
+    },
+    {
+      "name": "Phase 4: 规模化",
+      "status": "pending",
+      "date": "2027-01"
+    }
+  ],
+  "risk_indicators": {
+    "overall": 3.2,
+    "market": {
+      "level": "low",
+      "trend": "down"
+    },
+    "technical": {
+      "level": "medium",
+      "trend": "down"
+    },
+    "operational": {
+      "level": "low",
+      "trend": "up"
+    },
+    "financial": {
+      "level": "low",
+      "trend": "stable"
+    }
+  }
+}
