@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-04-06T08:03:52.833442",
+  "last_updated": "2026-04-06T08:14:20.829035",
   "investment": {
-    "total": 2826411,
-    "change_percent": 11.68665872919373,
+    "total": 2775570,
+    "change_percent": 13.043429922752752,
     "trend": [
       1200000,
       1500000,
@@ -13,12 +13,12 @@
     ]
   },
   "progress": {
-    "percentage": 64,
+    "percentage": 63,
     "phase": "2/4",
-    "change_percent": 8.270327488316315
+    "change_percent": 8.12484437885269
   },
   "investors": {
-    "total": 47,
+    "total": 48,
     "breakdown": {
       "institutional": 12,
       "individual": 28,
@@ -26,10 +26,10 @@
     }
   },
   "financial": {
-    "roi": 18.788943767353263,
-    "profit_margin": 31.723375121294232,
-    "cash_flow": 458246,
-    "monthly_growth": 7.797914198301882
+    "roi": 18.931637794092925,
+    "profit_margin": 32.74651219630323,
+    "cash_flow": 441079,
+    "monthly_growth": 7.642877696869738
   },
   "milestones": [
     {
