@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirvana SR Ecosystem Proposal v4.0 - Enhanced</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #2ecc71;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --warning: #e74c3c;
+            --success: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #4a6491 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-weight: 600;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .meta {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .meta-item {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 24px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .confidential-banner {
+            background: linear-gradient(135deg, var(--warning) 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-weight: 700;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.9; }
+        }
+        
+        .content {
+            margin-top: 40px;
+        }
+        
+        .section {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid var(--secondary);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(52, 152, 219, 0.2);
+        }
+        
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+        
+        h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3::before {
+            content: '•';
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+        
+        /* Market Analysis Styles */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .market-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .market-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .market-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        
+        .market-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-weight: 600;
+        }
+        
+        /* Financial Analysis Styles */
+        .financial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .financial-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .financial-card.positive {
+            border-color: var(--success);
+        }
+        
+        .financial-card.positive .financial-value {
+            color: var(--success);
+        }
+        
+        .financial-card.warning {
+            border-color: var(--warning);
+        }
+        
+        .financial-card.warning .financial-value {
+            color: var(--warning);
+        }
+        
+        .financial-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        
+        .financial-label {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .financial-desc {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        /* Case Study Styles */
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .case-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .case-title {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .case-result {
+            background: rgba(46, 204, 113, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        /* Risk Management Styles */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .risk-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .risk-level {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .risk-level.high {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--warning);
+        }
+        
+        .risk-level.medium {
+            background: rgba(241, 196, 15, 0.1);
+            color: #f39c12;
+        }
+        
+        .risk-level.low {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--accent);
+        }
+        
+        .mitigation-list {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        
+        .mitigation-list li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        /* Interactive Elements */
+        .interactive-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 2px dashed var(--secondary);
+        }
+        
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .calc-input {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .calc-result {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .nav-dot {
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 50%;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--secondary);
+            transform: scale(1.3);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--secondary);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+            background: white;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary) 0%, #2980b9 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo { font-size: 2.5rem; }
+            .subtitle { font-size: 1.4rem; }
+            .meta { flex-direction: column; align-items: center; }
+            .meta-item { width: 100%; max-width: 300px; }
+            .section { padding: 25px; }
+            .side-nav { display: none; }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .market-card, .financial-card, .case-card, .risk-card {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        /* Print Styles */
+        @media print {
+            .nav-links, .side-nav, .progress-bar, .download-btn {
+                display: none;
+            }
+            .section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Side Navigation -->
+    <div class="side-nav" id="sideNav">
+        <a href="#executive-summary" class="nav-dot active" data-section="executive"></a>
+        <a href="#market-analysis" class="nav-dot" data-section="market"></a>
+        <a href="#financial-analysis" class="nav-dot" data-section="financial"></a>
+        <a href="#technical-architecture" class="nav-dot" data-section="technical"></a>
+        <a href="#implementation" class="nav-dot" data-section="implementation"></a>
+        <a href="#spv-structure" class="nav-dot" data-section="spv"></a>
+        <a href="#case-studies" class="nav-dot" data-section="case"></a>
+        <a href="#risk-management" class="nav-dot" data-section="risk"></a>
+        <a href="#conclusion" class="nav-dot" data-section="conclusion"></a>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">NIRVANA SR ECOSYSTEM</div>
+            <div class="subtitle">富贵集团 SR 生态系统提案 v4.0 - Enhanced</div>
+            
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-btn">📊 数据仪表板</a>
+                <a href="Nirvana_SR_Proposal_v4.0_Bilingual_MOST_BEAUTIFUL.pdf" download class="nav-btn">📄 下载PDF</a>
+                <a href="#interactive-calculator" class="nav-btn">🧮 投资计算器</a>
+                <button onclick="toggleTheme()" class="nav-btn">🌙 切换主题</button>
+            </div>
+            
+            <div class="meta">
+                <div class="meta-item">Submitted to: Nirvana Asia Group</div>
+                <div class="meta-item">Date: April 5, 2026</div>
+                <div class="meta-item">Version: v4.0 Enhanced</div>
+                <div class="meta-item">Status: For Investment Review</div>
+            </div>
+        </header>
+        
+        <div class="confidential-banner">
+            🔒 CONFIDENTIAL DOCUMENT - FOR INTERNAL REVIEW ONLY<br>
+            保密文件 - 仅供内部审议 • 数据驱动投资决策
+        </div>
+        
+        <div class="content">
+            <!-- Executive Summary -->
+            <div class="section" id="executive-summary">
+                <h2>Executive Summary | 执行摘要</h2>
+                
+                <div style="background: white; padding: 30px; border-radius: 12px; margin: 20px 0; border-left: 5px solid var(--secondary);">
+                    <h3>CORE VISION | 核心愿景</h3>
+                    <p><strong>SR Ecosystem (Sanctum Real Ecosystem)</strong> - An AI-driven immersive digital platform that transforms funeral services into a holistic ecosystem of health, wellness, and life celebration.</p>
+                    <p style="margin-top: 15px; color: #2c3e50; font-weight: 500;"><strong>SR Ecosystem (Sanctum Real 生态系统)</strong> - 一个 AI 驱动的沉浸式数字平台，将殡葬服务转型为健康、养生、生命礼赞的全方位生态系统。</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 12px; margin: 20px 0; border-left: 5px solid var(--accent);">
+                    <h3>INVESTMENT HIGHLIGHTS | 投资亮点</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                        <div style="text-align: center; padding: 20px; background: rgba(52, 152, 219, 0.1); border-radius: 10px;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--secondary);">RM 2B</div>
+                            <div style="color: var(--primary); font-weight: 600;">Nirvana Fund</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">可用资金</div>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: rgba(46, 204, 113, 0.1); border-radius: 10px;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">49%</div>
+                            <div style="color: var(--primary); font-weight: 600;">Tech Equity</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">Immersa-X股权</div>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: rgba(155, 89, 182, 0.1); border-radius: 10px;">
+                            <div style="font-size: 2rem; font-weight: 800; color: #9b59b6;">3-6</div>
+                            <div style="color: var(--primary); font-weight: 600;">Months MVP</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">MVP时间</div>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: rgba(241, 196, 15, 0.1); border-radius: 10px;">
+                            <div style="font-size: 2rem; font-weight: 800; color: #f1c40f;">25%+</div>
+                            <div style="color: var(--primary); font-weight: 600;">ROI Target</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">目标回报率</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #9b59b6;">
+                    <h3>SPV STRUCTURE | SPV 结构</h3>
+                    <p>We propose establishing a <strong>Special Purpose Vehicle (SPV)</strong> as the operational engine to jointly develop, deploy, and scale the SR Ecosystem.</p>
+                    <p style="margin-top: 15px; color: #2c3e50; font-weight: 500;">建议成立<strong>特殊目的公司 (SPV)</strong>作为运营引擎，共同开发、部署并扩展 SR 生态系统。</p>
+                    
+                    <div style="display: flex; justify-content: center; gap: 40px; margin: 30px 0; flex-wrap: wrap;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; font-weight: 800; color: #9b59b6;">51%</div>
+                            <div style="color: var(--primary); font-weight: 600;">Nirvana Capital</div>
+                            <div style="color: #7f8c8d;">资金贡献</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; font-weight: 800; color: var(--accent);">49%</div>
+                            <div style="color: var(--primary); font-weight: 600;">Immersa-X Technology</div>
+                            <div style="color: #7f8c8d;">技术贡献</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Market Analysis -->
+            <div class="section" id="market-analysis">
+                <h2>Market Analysis | 市场分析</h2>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                    <h3>GLOBAL FUNERAL SERVICES MARKET | 全球殡葬服务市场</h3>
+                    
+                    <div class="market-grid">
+                        <div class="market-card">
+                            <div class="market-number">$128B</div>
+                            <div class="market-label">Market Size 2025</div>
+                            <p>Global funeral services market value, growing at 4.2% CAGR</p>
+                            <p style="color: #2c3e50; margin-top: 10px;">全球殡葬服务市场规模，年复合增长率4.2%</p>
+                        </div>
+                        
+                        <div class="market-card">
+                            <div class="market-number">$182B</div>
+                            <div class="market-label">Projected 2030</div>
+                            <p>Expected market size by 2030 with digital transformation</p>
+                            <p style="color: #2c3e50; margin-top: 10px;">预计2030年市场规模，数字化转型推动</p>
+                        </div>
+                        
+                        <div class="market-card">
+                            <div class="market-number">18%</div>
+                            <div class="market-label">Digital Penetration</div>
+                            <p>Current digital service adoption in funeral industry</p>
+                            <p style="color: #2c3e50; margin-top: 10px;">殡葬行业数字化服务当前渗透率</p>
+                        </div>
+                        
+                        <div class="market-card">
+                            <div class="market-number">35%</div>
+                            <div class="market-label">Target by 2030</div>
+                            <p>Expected digital penetration with new technologies</p>
+                            <p style="color: #2c3e50; margin-top: 10px;">预计2030年新技术推动的数字化渗透率</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                    <h3>ASIA-PACIFIC OPPORTUNITY | 亚太市场机会</h3>
+                    
+                    <div class="chart-container">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;">Market Growth by Region | 各地区市场增长</h4>
+                        <div class="chart-placeholder">
+                            <canvas id="marketChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 25px;">
+                        <div style="background: rgba(52, 152, 219, 0.1); padding: 20px; border-radius: 10px;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">6.8% CAGR</div>
+                            <div style="color: var(--primary); font-weight: 600;">Asia-Pacific Growth</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">Fastest growing region globally</div>
+                        </div>
+                        
+                        <div style="background: rgba(46, 204, 113, 0.1); padding: 20px; border-radius: 10px;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">RM 8.2B</div>
+                            <div style="color: var(--primary); font-weight: 600;">Malaysia Market</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">Local market opportunity</div>
+                        </div>
+                        
+                        <div style="background: rgba(155, 89, 182, 0.1); padding: 20px; border-radius: 10px;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: #9b59b6;">42%</div>
+                            <div style="color: var(--primary); font-weight: 600;">Urban Population</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">Digital service adoption rate</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                    <h3>TARGET CUSTOMER ANALYSIS | 目标客户分析</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px;">
+                        <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
+                            <h4 style="color: var(--primary); margin-bottom: 10px;">Primary Segment | 主要客户群</h4>
+                            <ul style="padding-left: 20px; color: #555;">
+                                <li>Age 35-55 urban professionals</li>
+                                <li>Tech-savvy, value digital experiences</li>
+                                <li>Higher disposable income</li>
+                                <li>Global family connections</li>
+                            </ul>
+                            <p style="color: #2c3e50; margin-top: 10px;">35-55岁城市专业人士 • 科技熟悉 • 重视数字体验 • 较高可支配收入 • 全球家庭联系</p>
+                        </div>
+                        
+                        <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
+                            <h4 style="color: var(--primary); margin-bottom: 10px;">Secondary Segment | 次要客户群</h4>
+                            <ul style="padding-left: 20px; color: #555;">
+                                <li>Overseas Chinese communities</li>
+                                <li>Younger generation (25-35)</li>
+                                <li>Corporate memorial services</li>
+                                <li>Cultural institutions</li>
+                            </ul>
+                            <p style="color: #2c3e50; margin-top: 10px;">海外华人社区 • 年轻一代(25-35岁) • 企业纪念服务 • 文化机构</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Financial Analysis -->
+            <div class="section" id="financial-analysis">
+                <h2>Financial Analysis | 财务分析</h2>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                    <h3>REVENUE MODEL | 收入模型</h3>
+                    
+                    <div class="financial-grid">
+                        <div class="financial-card positive">
+                            <div class="financial-value">40%</div>
+                            <div class="financial-label">Platform Subscription</div>
+                            <div class="financial-desc">殡仪馆平台订阅费</div>
+                        </div>
+                        
+                        <div class="financial-card positive">
+                            <div class="financial-value">30%</div>
+                            <div class="financial-label">Tech Services</div>
+                            <div class="financial-desc">定制技术服务费</div>
+                        </div>
+                        
+                        <div class="financial-card">
+                            <div class="financial-value">20%</div>
+                            <div class="financial-label">Content Licensing</div>
+                            <div class="financial-desc">数字内容授权费</div>
+                        </div>
+                        
+                        <div class="financial-card">
+                            <div class="financial-value">10%</div>
+                            <div class="financial-label">Data Analytics</div>
+                            <div class="financial-desc">行业数据分析服务</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                    <h3>INVESTMENT RETURN PROJECTION | 投资回报预测</h3>
+                    
+                    <div class="chart-container">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;">5-Year Financial Projection | 5年财务预测</h4>
+                        <div class="chart-placeholder">
+                            <canvas id="financialChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 25px;">
+                        <div style="text-align: center; padding: 20px; background: rgba(46, 204, 113, 0.1); border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent);">3.2 Years</div>
+                            <div style="color: var(--primary); font-weight: 600;">Payback Period</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">投资回收期</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; background: rgba(52, 152, 219, 0.1); border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: 800; color: var(--secondary);">28%</div>
+                            <div style="color: var(--primary); font-weight: 600;">5-Year ROI</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">5年投资回报率</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 20px; background: rgba(155, 89, 182, 0.1); border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: 800; color: #9b59b6;">RM 42M</div>
+                            <div style="color: var
