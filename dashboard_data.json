@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-04-05T08:09:46.006317",
+  "last_updated": "2026-04-06T08:03:12.895184",
   "investment": {
-    "total": 2807751,
-    "change_percent": 13.284075486935677,
+    "total": 2764365,
+    "change_percent": 12.879010257599035,
     "trend": [
       1200000,
       1500000,
@@ -15,7 +15,7 @@
   "progress": {
     "percentage": 64,
     "phase": "2/4",
-    "change_percent": 8.084731111829939
+    "change_percent": 8.031092596358828
   },
   "investors": {
     "total": 47,
@@ -26,10 +26,10 @@
     }
   },
   "financial": {
-    "roi": 18.762234063402364,
-    "profit_margin": 32.02228034945524,
-    "cash_flow": 445214,
-    "monthly_growth": 7.671953603662214
+    "roi": 18.602660128747495,
+    "profit_margin": 31.15511785433811,
+    "cash_flow": 442522,
+    "monthly_growth": 7.835890956699701
   },
   "milestones": [
     {
